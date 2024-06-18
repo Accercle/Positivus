@@ -1,0 +1,123 @@
+.process {
+    &__list {
+        display: flex; // flex, flex-direction позволяет расположить элементы в колонку 
+        flex-direction: column;
+        row-gap: 30px;
+        counter-reset: custom-counter; // значение лучше писать осмысленное
+        list-style: none;
+
+        @include mobile {
+            row-gap: 20px;
+        }
+
+    }
+
+    &__item {
+        --counterContent: counter(custom-counter);
+
+        counter-increment: custom-counter;
+
+        &:nth-child(-n+9) {
+            --counterContent: '0' counter(custom-counter); // Добавляет ноль в начале первым 9 элементам
+        }
+    }
+
+    &__accordion {
+        --indicatorVerticalRotate: 90deg;
+
+        padding: 40px 60px;
+        background-color: var(--color-gray);
+        border: var(--border);
+        border-radius: var(--border-radius-large);
+        box-shadow: var(--shadow);
+        transition-duration: var(--transition-duration);
+
+        @include hover {
+            background-color: var(--color-accent);
+        }
+
+        @include mobile {
+            padding: 30px;
+        }
+
+        &[open] { // селектор по атрибуту
+            --indicatorVerticalRotate: 0deg; // Поворачивает иконку при раскрытии
+
+            background-color: var(--color-accent);
+
+        }
+
+
+        &-header {
+            display: flex; // связка для расположения элементов по разные стороны
+            justify-content: space-between;
+            align-items: center;
+            column-gap: 50px;
+            cursor: pointer;
+
+            @include mobile {
+                column-gap: 28px;
+            }
+        }
+
+        &-title {
+            @include fluid-text(30, 18);
+
+            display: flex;
+            align-items: center;
+            column-gap: 25px;
+
+            @include mobile {
+                column-gap: 33px;
+            }
+
+            &::before {
+                content: var(--counterContent); // связака для кастомизации нумерации
+                font-size: 2em;
+
+                @include mobile {
+                    font-size: 30px;
+                }
+            }
+        }
+
+        &-indicator {
+            @include flex-center;
+            @include square(58px);
+
+            flex-shrink: 0; // Элемент не будет сужаться, даже при нехватки места
+            position: relative;
+            background-color: var(--color-gray);
+            border: var(--border);
+            border-radius: 50%;
+
+            &::before, 
+            &::after {
+                @include abs-center;
+
+                content: '';
+                width: 45%;
+                height: 10%;
+                background-color: var(--color-dark);
+            }
+
+            @include mobile {
+                width: 30px;
+            }
+
+            &::after {
+                rotate: var(--indicatorVerticalRotate);
+                transition-duration: var(--transition-duration);
+            }
+
+        }
+
+        &-body {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: var(--border);
+        }
+
+    }
+
+}

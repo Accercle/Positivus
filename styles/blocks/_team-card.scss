@@ -1,0 +1,78 @@
+.team-card {
+    height: 100%; // Выравнивает высоту карточек
+    padding: 40px 20px;
+    border: var(--border);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow);
+
+    @include mobile {
+        padding-inline: 50px;
+    }
+
+    &__header {
+        display: flex;
+    }
+
+    &__image {
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+    }
+
+    &__info {
+        align-self: end;
+        
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+    }
+
+    &__name {
+        font-size: 20px;
+
+        &:not(:last-child) {
+            margin-bottom: 3px;
+        }
+    }
+
+    &__link {
+        @include flex-center;
+        @include square(34px);
+
+        margin-left: auto;
+        align-self: start;
+        color: var(--color-accent);
+        background-color: var(--color-dark);
+        border-radius: 50%;
+    }
+
+    &__body {
+        margin-top: 28px;
+        padding-top: 28px;
+        border-top: var(--border);
+
+        @include mobile {
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

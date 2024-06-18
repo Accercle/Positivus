@@ -1,0 +1,27 @@
+.container {
+    max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+    margin: auto;
+    padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+    @include visually-hidden;
+  }
+
+.hidden-desktop {
+    @media (min-width: 768px) {
+        display: none !important;
+    }
+}
+
+.hidden-mobile {
+    @media (max-width:767px) {
+        display: none !important;
+    } 
+}
+
+.visible-mobile {
+    @media (max-width:768px) {
+        display: block;
+    }
+}

@@ -1,0 +1,59 @@
+.review-card {
+    --reviewCardCornerWidth: 40px;
+    --reviewCarCornerOffsetLeft: 52px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    @include mobile {
+        --reviewCardCornerWidth: 32px;
+        --reviewCarCornerOffsetLeft: 46px;
+
+        row-gap: 44px;
+    }
+
+    &__body {
+        position: relative;
+        border: 1px solid var(--color-accent);
+        border-radius: var(--border-radius-large);
+        padding: 48px var(--reviewCarCornerOffsetLeft) 52px; // padding-left будет зависить от локальной переменной
+
+        @include mobile {
+            padding: 30px;
+        }
+
+        &::after { // стилизация "уголка"
+            @include square(var(--reviewCardCornerWidth));
+
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: var(--reviewCarCornerOffsetLeft);
+            background-color: var(--color-dark);
+            border: inherit;
+            rotate: 45deg;
+            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+            translate: 0 -50%; // отрисовка фигуры
+        }
+    }
+
+    &__footer {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        padding-left: calc(
+            var(--reviewCarCornerOffsetLeft) +
+            var(--reviewCardCornerWidth) / 2
+            ); // смещение элементы footer правее.
+    }
+
+    &__name,
+    &__company {
+        font-style: normal;
+    }
+
+    &__name {
+        color: var(--color-accent);
+    }
+}
